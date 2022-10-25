@@ -1,8 +1,30 @@
 *{
     padding: 0;
     box-sizing: border-box;
-   
+
+    
+
+
 }
+.warn{
+    border: 2px solid red;
+}
+.pass{
+    display: block;
+    margin-top: 5px;
+}
+.login{
+    width: 100px;
+    height: 20px;
+    position: relative;
+    display: block;
+    margin-top: 5px;
+}
+
+
+
+
+
 .d-none{
     display: none;
 }
@@ -13,6 +35,7 @@
 #price{
     margin-top: 20px;
 }
+
 span{
     margin-bottom: 20px;
     color: red;
@@ -103,7 +126,7 @@ button{
     border: 0px;
     color: white;
     background-color: green;
-    border-radius: 40px;
+    border-radius: 20px;
     transition: 0.5s;
 }
 button:hover{
@@ -125,3 +148,16 @@ select{
    height: 20px;
    width: 100px;
  }
+ .logout{
+    width: 100px;
+    height: 20px;
+    position: relative;
+    left: 90%;
+    background-color: yellow;
+}
+.clear{
+    width: 100px;
+    height: 20px;
+    margin-top: 5px;
+}
+

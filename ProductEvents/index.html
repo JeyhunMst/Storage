@@ -17,6 +17,9 @@
                 <button type="button" class="login">Login</button>
                 
             </div>
+            <div class="clear-local">
+                <button type="button" class="clear">Clear storage</button>
+            </div>
             <div class="log-out">
                 <button type="button" class="logout d-none">Log out</button>
             </div>
@@ -29,7 +32,7 @@
                     <input type="text" name="category" placeholder="Category"  id="category" >
                     <span class="error-categories d-none"><br>Please enter category of product</span>
                     <br><label for="price" class="price">Price:</label>
-                    <input type="text" placeholder="Price" id="price" >
+                    <input type="number" placeholder="Price" id="price" >
                     <span class="error-price d-none"><br>Please enter price of product!</span>
                     <br><button type="button" class="add-btn">Add</button>
                 </form>
@@ -42,8 +45,8 @@
                     <select name="categories" id="category-filt">
                     </select>
                     <button type="button" class="category-filt">Filter</button>
-                    <input type="text" class="min" placeholder="min">
-                    <input type="text" class="max" placeholder="max">
+                    <input type="number" class="min" placeholder="min">
+                    <input type="number" class="max" placeholder="max">
                     <button type="button" class="price-filt">Filter</button>
                     <button type="button" class="back-def">Default</button>
 

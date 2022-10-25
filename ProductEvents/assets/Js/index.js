@@ -1,28 +1,61 @@
-
+//HTML elements
 const products=[];
 const btnAdd=document.querySelector(".add-btn");
 const tableElements=document.querySelector(".elements-table");
 const categories=[];
 const selection=document.querySelector("#category-filt");
+const btnSearch=document.querySelector(".searchBtn");
+const btnDefaultValue=document.querySelector(".back-def");
+const btnClearLocalStrg=document.querySelector(".clear");
+
 const btnLogIn=document.querySelector(".login");
 const btnLogOut=document.querySelector(".logout");
-localStorage.setItem("username","Ceyhun");
-localStorage.setItem("password","123456");
-btnLogIn.addEventListener("click",()=>{
-    const userName=document.querySelector(".username");
-    const pass=document.querySelector(".pass");
-     
-        if (userName===localStorage.getItem("username") && pass===JSON.parse(localStorage.getItem("password"))) {
-            const logOut=document.querySelector(".logout");
-            logOut.classList.remove("d-none");
-            const addProductSec=document.querySelector(".input-product");
-            addProductSec.classList.remove("d-none");
-            const filters=document.querySelector(".filters");
-            filters.classList.remove("d-none");
-            const prod=document.querySelector(".products");
-            prod.classList.remove("d-none");
+const addProductSec=document.querySelector(".input-product");
+const filters=document.querySelector(".filters");
+const prod=document.querySelector(".products");
+const userName=document.querySelector(".username");
+const pass=document.querySelector(".pass");
 
-        }
+const userLog={
+    username:"Ceyhun",
+    password:"123456"
+}
+
+btnClearLocalStrg.addEventListener("click",()=>{
+    localStorage.clear();
+});
+localStorage.setItem("user",JSON.stringify(userLog));
+btnLogIn.addEventListener("click",()=>{
+    const user=JSON.parse(localStorage.getItem("user"));
+    
+    if (userName.value==="Ceyhun" && pass.value==="123456" ) {
+        
+        btnLogOut.classList.remove("d-none");
+        addProductSec.classList.remove("d-none");
+        filters.classList.remove("d-none");
+        prod.classList.remove("d-none");
+        btnLogIn.classList.add("d-none");
+        userName.classList.add("d-none");
+        pass.classList.add("d-none");
+        pass.classList.remove("warn");
+        userName.classList.remove("warn");
+        userName.value="";
+        pass.value="";
+    }
+    else{
+        alert("PLease enter valid login or password!")
+        userName.classList.add("warn");
+        pass.classList.add("warn");
+    }
+});
+btnLogOut.addEventListener("click",()=>{
+    btnLogOut.classList.add("d-none");
+    addProductSec.classList.add("d-none");
+    filters.classList.add("d-none");
+    prod.classList.add("d-none");
+    btnLogIn.classList.remove("d-none");
+    userName.classList.remove("d-none");
+    pass.classList.remove("d-none");
 });
 
 
@@ -34,7 +67,7 @@ btnAdd.addEventListener("click",()=>{
    const spanName=document.querySelector(".error-name");
    const spanPrc=document.querySelector(".error-price")
    const spanCtg=document.querySelector(".error-categories");
-    if (!priceValidation(pricePrd) || pricePrd==="") {
+    if (isNaN(pricePrd)|| pricePrd==="") {
         spanPrc.classList.remove("d-none")
     }
     else{
@@ -68,11 +101,13 @@ btnAdd.addEventListener("click",()=>{
         }
     }
     
-    products.forEach((product) => {
-        if (!categories.includes(product.categoryPrd)) {
-            categories.push(product.categoryPrd);
+    products.forEach((product)=>{
+        if (categories.includes(product.categoryPrd)) {
+            categories.pop(product.categoryPrd);
         }
+        categories.push(product.categoryPrd);
     });
+
     addOptions(categories);
     tableElements.innerHTML=`
             <tr class="head-tr">
@@ -80,8 +115,41 @@ btnAdd.addEventListener("click",()=>{
                 <th>Price</th>
                 <th>Category</th>
             </tr>`;
-    addAllElementsToTable(products);
+    sendElementstoStorage(products);
+    addAllElementsToTable(JSON.parse(localStorage.getItem("products")));
 })
+
+function sendElementstoStorage(array){
+    localStorage.setItem("products",JSON.stringify(array));
+}
+function getElementsfromStorage(array){
+    return JSON.parse(localStorage.getItem("products"));
+}
+
+const intervalProducts=setInterval(()=>{
+    if (localStorage.getItem("products")) {
+        tableElements.innerHTML=`
+            <tr class="head-tr">
+                <th>Product name</th>
+                <th>Price</th>
+                <th>Category</th>
+            </tr>`;
+        btnLogOut.classList.remove("d-none");
+        addProductSec.classList.remove("d-none");
+        filters.classList.remove("d-none");
+        prod.classList.remove("d-none");
+        btnLogIn.classList.add("d-none");
+        userName.classList.add("d-none");
+        pass.classList.add("d-none");
+        pass.classList.remove("warn");
+        userName.classList.remove("warn");
+        userName.value="";
+        pass.value="";
+        addAllElementsToTable(JSON.parse(localStorage.getItem("products")));
+        clearInterval(intervalProducts);
+    }
+})
+
 function addAllElementsToTable(products){
     for (let i = 0; i < products.length; i++) {
         const product=products[i];
@@ -120,31 +188,8 @@ function existInList(products,namePr,category,price){
     }
     return false;
 }
-    
-function priceValidation(price){
-    let count=0;
-    for (let i = 0; i < price.length; i++) {
-        let priceElement=price[i];
-        switch (priceElement) {
-            case "1":
-            case "2":
-            case "3":
-            case "4":
-            case "5":
-            case "6":
-            case "7":
-            case "8":
-            case "9":
-            case "0":
-                count++;
-                break;       
-            default:
-                return false;
-        }
-        
-    }
-    return true;
-}
+
+
 const  aToZ=document.querySelector(".ato-z");
 const zToA=document.querySelector(".zto-a");
 
@@ -212,8 +257,6 @@ btnCategory.addEventListener("click",()=>{
     addAllElementsToTable(filtArray);
 })
 
-
-
 const btnPrice=document.querySelector(".price-filt");
 const spanMin=document.querySelector(".minSpan");
 const spanMax=document.querySelector(".maxSpan");
@@ -222,7 +265,7 @@ btnPrice.addEventListener("click",()=>{
     const filtPrice=[];
     const minPrc=document.querySelector(".min").value;
     const maxPrc=document.querySelector(".max").value;
-    if (priceValidation(minPrc) && priceValidation(maxPrc)) {
+    if (isNaN(minPrc) && isNaN(maxPrc)) {
         products.forEach((product)=>{
             if (Number(product.pricePrd)>=Number(minPrc) && Number(product.pricePrd)<=Number(maxPrc)) {
                 filtPrice.push(product);
@@ -241,7 +284,6 @@ btnPrice.addEventListener("click",()=>{
     }
 });
 
-const btnSearch=document.querySelector(".searchBtn");
 
 btnSearch.addEventListener("click",()=>{
     const searchInp=document.querySelector(".search-inp").value;
@@ -260,8 +302,6 @@ btnSearch.addEventListener("click",()=>{
     addAllElementsToTable(searchFilt);
 })
 
-
-const btnDefaultValue=document.querySelector(".back-def");
 
 btnDefaultValue.addEventListener("click",()=>{
     tableElements.innerHTML=`
