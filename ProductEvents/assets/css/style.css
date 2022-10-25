@@ -1,0 +1,127 @@
+*{
+    padding: 0;
+    box-sizing: border-box;
+   
+}
+.d-none{
+    display: none;
+}
+
+#categories{
+    margin-top: 20px;
+}
+#price{
+    margin-top: 20px;
+}
+span{
+    margin-bottom: 20px;
+    color: red;
+}
+.add-btn{
+    margin-top: 20px;
+    width: 120px;
+    height: 30px;
+    background-color: blue;
+    color: white;
+    border: 0px;
+    border-radius: 40px;
+}
+.filters{
+    margin-top: 30px;
+}
+.category{
+    position: relative;
+    left: 40%;
+    margin-left: 20px;
+}
+#category{
+    margin-top: 20px;
+}
+#category-filt{
+    position: relative;
+    left: 40%;
+    width: 80px;
+}
+.search{
+    margin-top: 20px;
+}
+.min{
+    position: relative;
+    left: 50%;
+    margin-left: 50px;
+    width: 80px;
+}
+.max{
+    position: relative;
+    left: 50%;
+    width: 80px;
+}
+.category-filt{
+    position: relative;
+    left: 40%;
+    margin-left: 5px;
+    width: 100px;
+    height: 26px;
+}
+.price-filt{
+    position: relative;
+    left: 50%;
+    margin-left: 5px;
+    width: 100px;
+    height: 26px;
+}
+.search-inp{
+    width: 1500px;
+    height: 30px;
+}
+.products{
+    margin-top: 50px;
+}
+table, th, td{
+    border: 1px solid grey;
+    border-radius: 4px;
+}
+.product{
+    height: 30px;
+    width: 100%;
+}
+.filtr{
+    position: relative;
+    left: 60%;
+    top: 30%;
+}
+.searchBtn{
+    margin-top: 20px;
+    width: 100px;
+    height: 30px;
+    border-radius: 30px;
+    border: 0px;
+    background-color: blue;
+    color: white;
+}
+button{
+    border: 0px;
+    color: white;
+    background-color: green;
+    border-radius: 40px;
+    transition: 0.5s;
+}
+button:hover{
+    transform: scale(1.1);
+}
+.ato-z, .zto-a{
+    width: 40px;
+    height: 20px;
+}
+input{
+    border-radius: 4px;
+}
+select{
+    border-radius: 30px;
+}
+ .back-def{
+    position: relative;
+   right: 10%;
+   height: 20px;
+   width: 100px;
+ }

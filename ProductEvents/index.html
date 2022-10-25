@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./assets/Js/index.js" defer></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Product</title>
+</head>
+<body>
+    <main>
+        <section id="intro">
+            <div class="log">
+                <input type="text" placeholder="Usernmae" class="username">
+                <input type="text" placeholder="password" class="pass">
+                <button type="button" class="login">Login</button>
+                
+            </div>
+            <div class="log-out">
+                <button type="button" class="logout d-none">Log out</button>
+            </div>
+            <div class="input-product d-none">
+                <form id="add-form">
+                    <label for="product-name">Product name:</label>
+                    <input type="text" placeholder="Product name" id="product-name" >
+                    <span class="error-name d-none"><br>Please enter name of product</span>
+                    <br><label for="category" class="categories">Category:</label>
+                    <input type="text" name="category" placeholder="Category"  id="category" >
+                    <span class="error-categories d-none"><br>Please enter category of product</span>
+                    <br><label for="price" class="price">Price:</label>
+                    <input type="text" placeholder="Price" id="price" >
+                    <span class="error-price d-none"><br>Please enter price of product!</span>
+                    <br><button type="button" class="add-btn">Add</button>
+                </form>
+            </div>
+            <div class="filters d-none">
+                <form class="filters">
+                    <button type="button" class="ato-z">A-Z</button>
+                    <button type="button" class="zto-a">Z-A</button>
+                    <label for="category-filt" class="category">Category:</label>
+                    <select name="categories" id="category-filt">
+                    </select>
+                    <button type="button" class="category-filt">Filter</button>
+                    <input type="text" class="min" placeholder="min">
+                    <input type="text" class="max" placeholder="max">
+                    <button type="button" class="price-filt">Filter</button>
+                    <button type="button" class="back-def">Default</button>
+
+                </form>
+                <form class="search">
+                    <input type="text" placeholder="Search" class="search-inp">
+                    <button type="button" class="searchBtn">Search</button>
+                </form>
+            </div>
+            <div class="products d-none">
+                <table style="width:100%" class="elements-table">
+                </table>
+            </div>
+        </section>
+    </main>
+    
+</body>
+</html>
